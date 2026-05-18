@@ -4,4 +4,4 @@
 
 #### n8n open koro--->click koro: Add first step--->click koro: Trigger manualy--->click koro: Open nodes panel--->search koro & click: Edit Fields--->click: Add Field--->value daw: Name, Wasim--->click: Execute step 
 
-#### Edit Fields er + sign click koro--->search & click: supabase--->click: Create a row
+#### Edit Fields er + sign click koro--->search & click: supabase--->click: Create a row--->click: Set up credential--->go--->supabase dashboard & click project overview tab--->
