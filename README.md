@@ -8,3 +8,4 @@
 secret er reveal button & click copy--->Service Role Secret e paste koro.--->click: Save button.--->value daw: Table Name or ID [ei field e click korle auto supabase theke value show korbe click koro]--->click koro: Add Field--->Field Name or ID: value select koro Name--->Field Value te pash theke Name ke tene ene daw
 
 
+#### Execute Workflow te click koro. check koro supabase e data geche kina.
