@@ -1,11 +1,195 @@
-## n8n-Database
+# 🗄️ n8n — Database (Supabase) Integration Guide
 
-#### visit--->supabase.com--->Sign In koro--->go--->dashboard--->click: New project--->Project name daw: [example: n8n-project ] --->Database password daw: [example: DkDdWl9sTYFwmCKI ]--->click koro: Create new project--->left side theke click: Table Editor--->click: Create a table--->Name daw: [example: Employee]--->Save button click koro--->column add korar jonno + sign click koro--->Name daw: [ex: Name]--->Type daw: [ex: text]--->Save button click koro.
+> n8n এ Supabase Database সংযুক্ত করে Data Insert করার ধাপে ধাপে গাইড।
 
-#### n8n open koro--->click koro: Add first step--->click koro: Trigger manualy--->click koro: Open nodes panel--->search koro & click: Edit Fields--->click: Add Field--->value daw: Name, Wasim--->click: Execute step 
+---
 
-#### Edit Fields er + sign click koro--->search & click: supabase--->click: Create a row--->click: Set up credential--->go--->supabase dashboard & click project overview tab--->copy koro Project Url & paste koro Host e--->click: Project Settings--->click: API Keys--->click: Legacy anon, service_role API keys---> click: service_role
-secret er reveal button & click copy--->Service Role Secret e paste koro.--->click: Save button.--->value daw: Table Name or ID [ei field e click korle auto supabase theke value show korbe click koro]--->click koro: Add Field--->Field Name or ID: value select koro Name--->Field Value te pash theke Name ke tene ene daw
+## 📊 Workflow Overview
 
+```
+Manual Trigger
+      │
+      ▼
+Edit Fields (Set)
+[Name = "Wasim"]
+      │
+      ▼
+Supabase: Create a row
+[Employee Table এ Data Insert]
+      │
+      ▼
+Supabase Dashboard এ Data দেখো ✅
+```
 
-#### Execute Workflow te click koro. check koro supabase e data geche kina.
+---
+
+## 🌐 Supabase সেটআপ
+
+### ✅ ধাপ ১ — Supabase Account ও Project তৈরি করো
+
+- 🔗 [supabase.com](https://supabase.com) ভিজিট করো
+- **Sign In** করো
+- Dashboard এ যাও
+- **"New project"** এ ক্লিক করো
+- নিচের তথ্য দাও:
+
+| Field | উদাহরণ |
+|-------|---------|
+| **Project Name** | `n8n-project` |
+| **Database Password** | `DkDdWl9sTYFwmCKI` |
+
+> ⚠️ Password টি নিরাপদ জায়গায় রেখে দাও — পরে দরকার হবে।
+
+- **"Create new project"** বাটনে ক্লিক করো
+
+---
+
+### ✅ ধাপ ২ — Table তৈরি করো
+
+- Left Sidebar থেকে **"Table Editor"** এ ক্লিক করো
+- **"Create a table"** এ ক্লিক করো
+- **Name** দাও: `Employee`
+- **Save** বাটনে ক্লিক করো
+
+---
+
+### ✅ ধাপ ৩ — Column যোগ করো
+
+Table এ Column যোগ করতে **`+`** বাটনে ক্লিক করো:
+
+| Field | উদাহরণ |
+|-------|---------|
+| **Name** | `Name` |
+| **Type** | `text` |
+
+- **Save** বাটনে ক্লিক করো
+
+> ✔️ Supabase এ `Employee` Table প্রস্তুত — এখন n8n এ কাজ শুরু করো।
+
+---
+
+## ⚙️ n8n Workflow সেটআপ
+
+### ✅ ধাপ ৪ — Manual Trigger ও Edit Fields যোগ করো
+
+- **n8n** ওপেন করো
+- **"Add first step"** এ ক্লিক করো
+- **"Trigger Manually"** সিলেক্ট করো
+- **Nodes Panel** ওপেন করো
+- **"Edit Fields"** সার্চ করো এবং ক্লিক করো
+- **"Add Field"** এ ক্লিক করো
+- নিচের Value দাও:
+
+| Field Name | Value |
+|------------|-------|
+| `Name` | `Wasim` |
+
+- **"Execute step"** এ ক্লিক করো
+
+---
+
+### ✅ ধাপ ৫ — Supabase Node যোগ করো
+
+- **Edit Fields** এর **`+`** বাটনে ক্লিক করো
+- **"Supabase"** সার্চ করো এবং ক্লিক করো
+- **"Create a row"** সিলেক্ট করো
+- **"Set up credential"** এ ক্লিক করো
+
+---
+
+## 🔑 Supabase Credential সেটআপ
+
+### ✅ ধাপ ৬ — Project URL কপি করো
+
+- Supabase Dashboard এ যাও
+- **Project Overview** Tab এ ক্লিক করো
+- **Project URL** কপি করো
+- n8n এর **Host** Field এ Paste করো
+
+---
+
+### ✅ ধাপ ৭ — Service Role Secret কপি করো
+
+নিচের ধাপ অনুসরণ করো:
+
+```
+Project Settings
+      │
+      ▼
+API Keys
+      │
+      ▼
+Legacy anon, service_role API keys
+      │
+      ▼
+service_role → secret → Reveal বাটনে ক্লিক করো
+      │
+      ▼
+Copy বাটনে ক্লিক করো
+```
+
+- কপি করা Secret টি n8n এর **Service Role Secret** Field এ Paste করো
+- **Save** বাটনে ক্লিক করো
+
+---
+
+### ✅ ধাপ ৮ — Supabase Node Value সেট করো
+
+Credential সেটআপ শেষে নিচের Value দাও:
+
+| Field | Value |
+|-------|-------|
+| **Table Name or ID** | `Employee` *(ক্লিক করলে Supabase থেকে Auto দেখাবে)* |
+| **Field Name or ID** | `Name` |
+| **Field Value** | Edit Fields থেকে `Name` টেনে এনে দাও |
+
+> 💡 **Field Value কীভাবে দেবে?**
+> Field Value এর পাশ থেকে Edit Fields এর `Name` Variable টি **Drag করে** এনে Drop করো।
+
+---
+
+## ▶️ Workflow Execute করো
+
+### ✅ ধাপ ৯ — Execute ও Verify করো
+
+- **Execute Workflow** বাটনে ক্লিক করো
+- Supabase Dashboard এ গিয়ে **Table Editor → Employee** Table চেক করো
+
+> ✔️ সফল হলে `Employee` Table এ নতুন Row দেখা যাবে:
+
+| id | Name |
+|----|------|
+| 1 | Wasim |
+
+---
+
+## 📋 Quick Reference
+
+| ধাপ | কাজ | কোথায় |
+|-----|-----|--------|
+| ১ | New Project তৈরি | Supabase |
+| ২ | Employee Table তৈরি | Supabase |
+| ৩ | Name Column যোগ | Supabase |
+| ৪ | Manual Trigger ও Edit Fields সেটআপ | n8n |
+| ৫ | Supabase Node যোগ | n8n |
+| ৬ | Project URL কপি ও Host এ দাও | Supabase → n8n |
+| ৭ | Service Role Secret কপি ও দাও | Supabase → n8n |
+| ৮ | Table ও Field Value সেট | n8n |
+| ৯ | Execute ও Supabase এ Data যাচাই | n8n + Supabase |
+
+---
+
+## 💡 Supabase Credential কোথায় পাবে?
+
+```
+supabase.com → Dashboard → তোমার Project
+        │
+        ├── Project Overview → Project URL (Host এর জন্য)
+        │
+        └── Project Settings → API Keys
+                    └── service_role → secret (Password এর জন্য)
+```
+
+---
+
+*Supabase একটি Open Source Firebase Alternative। n8n এর সাথে সংযুক্ত করলে যেকোনো Automation এর Data সহজে Database এ সংরক্ষণ করা যায়।*
